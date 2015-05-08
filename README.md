@@ -1,1 +1,2 @@
 # KLAlertView
+KLAlertView是一个自定义的AlertView，为满足多文本输入的需求
