@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 KLStudio. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "KLAlertView.h"
 
 #define HorizontalMargin        20
