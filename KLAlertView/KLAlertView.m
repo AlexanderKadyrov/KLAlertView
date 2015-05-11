@@ -69,21 +69,21 @@
 
     CGFloat currentyPos = CGRectGetMaxY(titleLabel.frame) + VerticalMargin;
     for (UITextField * textField in self.textFieldArray) {
-        CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 25);
+        CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 30);
         [textField setFrame:frame];
         [textField setBorderStyle:UITextBorderStyleNone];
-        [textField setFont:[UIFont systemFontOfSize:14]];
+        [textField setFont:[UIFont systemFontOfSize:16]];
         [textField.layer setBorderColor:[UIColor blackColor].CGColor];
         [textField.layer setBorderWidth:0.5];
         [self.contentView addSubview:textField];
         currentyPos += textField.frame.size.height + 8;
     }
     [(UITextField *)[self.textFieldArray lastObject] setReturnKeyType:UIReturnKeyDone];
-    currentyPos -= 4;
+    currentyPos -= 3;
     
-    self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 14)];
+    self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 16)];
     [self.hintLabel setBackgroundColor:[UIColor clearColor]];
-    [self.hintLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.hintLabel setFont:[UIFont systemFontOfSize:13]];
     [self.hintLabel setTextColor:[UIColor redColor]];
     [self.contentView addSubview:self.hintLabel];
     
