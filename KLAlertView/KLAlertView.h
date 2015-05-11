@@ -18,6 +18,15 @@
 
 - (void)show;
 
+- (void)dismiss;
+
+- (void)setHint:(NSString *)hint;
+
 - (UITextField *)textFieldAtIndex:(NSInteger)index;
+
+@end
+
+
+@interface KLButton : UIButton;
 
 @end
