@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KLAlertView"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "KLAlertView is used for mutil-TextField input in alertView"
   s.homepage     = "https://github.com/kinglonghuang?tab=repositories"
   s.license      = "MIT"
