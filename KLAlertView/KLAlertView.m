@@ -71,6 +71,9 @@
     for (UITextField * textField in self.textFieldArray) {
         CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 30);
         [textField setFrame:frame];
+        [textField setLeftViewMode:UITextFieldViewModeAlways];
+        UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
+        [textField setLeftView:leftView];
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
         [textField.layer setBorderColor:[UIColor blackColor].CGColor];
