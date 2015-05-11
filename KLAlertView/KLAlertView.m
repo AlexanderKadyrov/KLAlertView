@@ -79,14 +79,15 @@
         currentyPos += textField.frame.size.height + 8;
     }
     [(UITextField *)[self.textFieldArray lastObject] setReturnKeyType:UIReturnKeyDone];
+    currentyPos -= 4;
     
-    self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 18)];
+    self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 14)];
     [self.hintLabel setBackgroundColor:[UIColor clearColor]];
-    [self.hintLabel setFont:[UIFont systemFontOfSize:14]];
+    [self.hintLabel setFont:[UIFont systemFontOfSize:11]];
     [self.hintLabel setTextColor:[UIColor redColor]];
     [self.contentView addSubview:self.hintLabel];
     
-    currentyPos = CGRectGetMaxY(self.hintLabel.frame) + 5;
+    currentyPos = CGRectGetMaxY(self.hintLabel.frame) + 3;
     
     //Add horizontal line
     UIView * horizontalLineView = [[UIView alloc] initWithFrame:CGRectMake(0, currentyPos, self.contentView.frame.size.width, 1.0)];
