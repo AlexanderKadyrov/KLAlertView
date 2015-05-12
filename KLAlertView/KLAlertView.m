@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray * textFieldArray;
 @property (nonatomic, strong) UILabel * hintLabel;
 @property (nonatomic, strong) UIView * contentView;
+@property (nonatomic, strong) UIView * maskView;
 
 @property (nonatomic, strong) UIButton * cancelBtn;
 @property (nonatomic, strong) UIButton * confirmBtn;
@@ -34,9 +35,10 @@
 }
 
 - (void)dismissWithAnimation {
-    [UIView animateWithDuration:0.2f delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
-        self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
-        self.contentView.layer.transform = CATransform3DConcat(self.contentView.layer.transform, CATransform3DMakeScale(0.6f, 0.6f, 1.0));
+    for (UITextField * textField in self.textFieldArray) {
+        [textField resignFirstResponder];
+    }
+    [UIView animateWithDuration:0.20f delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
         self.contentView.layer.opacity = 0.0f;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -48,14 +50,16 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     [self setFrame:screenBounds];
     [self setBackgroundColor:[UIColor clearColor]];
+    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
-    UIView * maskView = [[UIView alloc] initWithFrame:self.bounds];
-    [maskView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-    [maskView setAlpha:0.2];
-    [maskView setBackgroundColor:[UIColor blackColor]];
-    [super addSubview:maskView];
+    self.maskView = [[UIView alloc] initWithFrame:self.bounds];
+    [self.maskView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [self.maskView setAlpha:0.2];
+    [self.maskView setBackgroundColor:[UIColor blackColor]];
+    [super addSubview:self.maskView];
     
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake((screenBounds.size.width-width)/2.0, (screenBounds.size.height-100)/2.0, width, 0)];
+    [self.contentView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
     [self.contentView.layer setCornerRadius:6.0];
     [self.contentView.layer setMasksToBounds:YES];
     [self.contentView setBackgroundColor:[UIColor whiteColor]];
@@ -103,12 +107,8 @@
     CGFloat buttonHeight = 40;
     //Add cancel button
     CGRect cancelBtnFrame = CGRectMake(0, currentyPos, self.contentView.frame.size.width/2.0-0.5, buttonHeight);
-    self.cancelBtn = [[KLButton alloc] init];
-    [self.cancelBtn setShowsTouchWhenHighlighted:YES];
-    [self.cancelBtn setFrame:cancelBtnFrame];
-    [self.cancelBtn setTitleColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+    self.cancelBtn = [[KLButton alloc] initWithFrame:cancelBtnFrame];
     [self.cancelBtn setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
-    [self.cancelBtn setBackgroundColor:[UIColor clearColor]];
     [self.cancelBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cancelBtn];
     
@@ -120,12 +120,8 @@
     
     //Add Confirm button
     CGRect confirmBtnFrame = CGRectMake(self.contentView.frame.size.width/2.0+0.5, currentyPos, self.contentView.frame.size.width/2.0-0.5, buttonHeight);
-    self.confirmBtn = [[KLButton alloc] init];
-    [self.confirmBtn setShowsTouchWhenHighlighted:YES];
-    [self.confirmBtn setFrame:confirmBtnFrame];
-    [self.confirmBtn setTitleColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+    self.confirmBtn = [[KLButton alloc] initWithFrame:confirmBtnFrame];
     [self.confirmBtn setTitle:self.confirmButtonTitle forState:UIControlStateNormal];
-    [self.confirmBtn setBackgroundColor:[UIColor clearColor]];
     [self.confirmBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.confirmBtn];
 
@@ -158,6 +154,18 @@
     ;
 }
 
+- (void)layoutSubviews {
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGRect frame = self.contentView.frame;
+    frame.origin.x = (screenBounds.size.width-frame.size.width)/2.0;
+    if (screenBounds.size.width > screenBounds.size.height) {
+        frame.origin.y = 5;
+    }else {
+        frame.origin.y = 100;
+    }
+    [self.contentView setFrame:frame];
+}
+
 #pragma mark - Public
 
 - (instancetype)initWithTitle:(NSString *)title textFields:(NSArray *)textFieldArray cancelButtonTitle:(NSString *)cancelButtonTitle confirmButtonTitle:(NSString *)confirmButtonTitle {
@@ -185,6 +193,7 @@
                          self.contentView.layer.transform = CATransform3DMakeScale(1, 1, 1);
                      }
                      completion:^(BOOL finished) {
+                         [self.contentView.layer setTransform:CATransform3DIdentity];
                      }
      ];
     
@@ -210,6 +219,17 @@
 
 
 @implementation KLButton
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setShowsTouchWhenHighlighted:YES];
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setTitleColor:[UIColor colorWithRed:0 green:122/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+        return self;
+    }
+    return nil;
+}
 
 - (void)setHighlighted:(BOOL)highlighted {
     if (highlighted) {
