@@ -29,4 +29,6 @@
 
 @interface KLButton : UIButton;
 
+@property (nonatomic, strong) UIColor * bgColor;
+
 @end

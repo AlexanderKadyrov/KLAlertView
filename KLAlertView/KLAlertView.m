@@ -218,6 +218,10 @@
 @end
 
 
+@interface KLButton()
+
+@end
+
 @implementation KLButton
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -233,10 +237,15 @@
 
 - (void)setHighlighted:(BOOL)highlighted {
     if (highlighted) {
-        [self setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.8]];
+        [self setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     }else {
-        [self setBackgroundColor:[UIColor clearColor]];
+        [self setBackgroundColor:self.bgColor];
     }
+}
+
+- (void)setBgColor:(UIColor *)bgColor {
+    _bgColor = bgColor;
+    [super setBackgroundColor:bgColor];
 }
 
 @end
