@@ -244,14 +244,6 @@
     return nil;
 }
 
-- (void)setHighlighted:(BOOL)highlighted {
-    if (highlighted) {
-        [self setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
-    }else {
-        [self setBackgroundColor:self.bgColor];
-    }
-}
-
 - (void)setBgColor:(UIColor *)bgColor {
     _bgColor = bgColor;
     [super setBackgroundColor:bgColor];
