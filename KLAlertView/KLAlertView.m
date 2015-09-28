@@ -88,7 +88,7 @@
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
         viewField.backgroundColor = textField.backgroundColor;
         viewField.layer.cornerRadius = 4;
-        textField.frame = CGRectMake(10, 0, viewField.frame.size.width-20, viewField.frame.size.height);
+        textField.frame = CGRectMake(12, 0, viewField.frame.size.width-24, viewField.frame.size.height);
         [viewField addSubview:textField];
         
         [self.contentView addSubview:viewField];
