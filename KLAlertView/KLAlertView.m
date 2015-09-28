@@ -112,6 +112,7 @@
     [self.cancelBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.cancelBtn setTitleColor:[UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1] forState:UIControlStateNormal];
+    [self.cancelBtn setTitleColor:[UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1] forState:UIControlStateHighlighted];
     
     [self.contentView addSubview:self.cancelBtn];
     
@@ -129,6 +130,7 @@
     
     self.confirmBtn.backgroundColor = [UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1];
     [self.confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     [self.contentView addSubview:self.confirmBtn];
 
