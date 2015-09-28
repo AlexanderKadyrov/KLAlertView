@@ -220,8 +220,6 @@
                          [self.contentView.layer setTransform:CATransform3DIdentity];
                      }
      ];
-    
-    [[self textFieldAtIndex:0] becomeFirstResponder];
 }
 
 - (void)dismiss {
