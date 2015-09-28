@@ -110,6 +110,9 @@
     self.cancelBtn = [[KLButton alloc] initWithFrame:cancelBtnFrame];
     [self.cancelBtn setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
     [self.cancelBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.cancelBtn setTitleColor:[UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1] forState:UIControlStateNormal];
+    
     [self.contentView addSubview:self.cancelBtn];
     
     //Add vertical line
@@ -125,7 +128,7 @@
     [self.confirmBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     
     self.confirmBtn.backgroundColor = [UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1];
-    self.confirmBtn.titleLabel.textColor = [UIColor whiteColor];
+    [self.confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self.contentView addSubview:self.confirmBtn];
 
