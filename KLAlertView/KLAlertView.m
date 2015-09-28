@@ -81,11 +81,13 @@
         [textField setFont:[UIFont systemFontOfSize:16]];
         
         textField.attributedText = [self attributesForTextString:textField.text];
+        textField.adjustsFontSizeToFitWidth = YES;
+        textField.minimumFontSize = 7;
         
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
         viewField.backgroundColor = textField.backgroundColor;
         viewField.layer.cornerRadius = 4;
-        textField.frame = CGRectMake(8, 0, viewField.frame.size.width-8, viewField.frame.size.height);
+        textField.frame = CGRectMake(8, 0, viewField.frame.size.width-16, viewField.frame.size.height);
         [viewField addSubview:textField];
         
         [self.contentView addSubview:viewField];
