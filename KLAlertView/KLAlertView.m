@@ -153,23 +153,10 @@
 }
 
 - (NSMutableAttributedString *)attributesForTextString:(NSString *)string {
-    
-    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
-    
-    [paragrahStyle setAlignment:NSTextAlignmentCenter];
-    
-    
-    
     NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor darkGrayColor],
-                                 
-                                 NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14],
-                                 
-                                 NSParagraphStyleAttributeName:paragrahStyle};
-    
-    
+                                 NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14]};
     
     return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
-    
 }
 
 #pragma mark - Action
