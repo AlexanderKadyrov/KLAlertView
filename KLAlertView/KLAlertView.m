@@ -9,7 +9,7 @@
 #import "KLAlertView.h"
 
 #define HorizontalMargin        8
-#define VerticalMargin          15
+#define VerticalMargin          8
 
 @interface KLAlertView()
 
