@@ -74,14 +74,22 @@
     CGFloat currentyPos = CGRectGetMaxY(titleLabel.frame) + VerticalMargin;
     for (UITextField * textField in self.textFieldArray) {
         CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, textField.frame.size.height);
-        [textField setFrame:frame];
         [textField setLeftViewMode:UITextFieldViewModeAlways];
         UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
         [textField setLeftView:leftView];
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
         textField.layer.cornerRadius = 4;
-        [self.contentView addSubview:textField];
+        
+        UIView *viewField = [[UIView alloc] initWithFrame:frame];
+        viewField.backgroundColor = textField.backgroundColor;
+        CGRect newFrame = frame;
+        newFrame.size.width = self.contentView.frame.size.width - (2*HorizontalMargin) - 8;
+        textField.frame = newFrame;
+        [viewField addSubview:textField];
+        
+        
+        [self.contentView addSubview:viewField];
         currentyPos += textField.frame.size.height + 8;
     }
     [(UITextField *)[self.textFieldArray lastObject] setReturnKeyType:UIReturnKeyDone];
