@@ -73,7 +73,7 @@
 
     CGFloat currentyPos = CGRectGetMaxY(titleLabel.frame) + VerticalMargin;
     for (UITextField * textField in self.textFieldArray) {
-        CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, 30);
+        CGRect frame = CGRectMake(HorizontalMargin, currentyPos, self.contentView.frame.size.width - 2*HorizontalMargin, textField.frame.size.height);
         [textField setFrame:frame];
         [textField setLeftViewMode:UITextFieldViewModeAlways];
         UIView * leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
