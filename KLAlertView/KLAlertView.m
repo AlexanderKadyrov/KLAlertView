@@ -82,6 +82,7 @@
         
         textField.attributedText = [self attributesForTextString:textField.text];
         textField.adjustsFontSizeToFitWidth = YES;
+        textField.layer.cornerRadius = 4;
         textField.minimumFontSize = 7;
         
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
