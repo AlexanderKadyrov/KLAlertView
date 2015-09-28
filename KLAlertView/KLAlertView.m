@@ -79,11 +79,11 @@
         [textField setLeftView:leftView];
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
-        textField.layer.cornerRadius = 4;
         
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
         viewField.backgroundColor = textField.backgroundColor;
-        textField.frame = CGRectMake(0, 0, viewField.frame.size.width, viewField.frame.size.height);
+        viewField.layer.cornerRadius = 4;
+        textField.frame = CGRectMake(0, 0, viewField.frame.size.width-8, viewField.frame.size.height);
         [viewField addSubview:textField];
         
         [self.contentView addSubview:viewField];
