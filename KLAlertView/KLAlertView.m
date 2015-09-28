@@ -80,8 +80,7 @@
         [textField setLeftView:leftView];
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
-        [textField.layer setBorderColor:[UIColor blackColor].CGColor];
-        [textField.layer setBorderWidth:0.5];
+        textField.layer.cornerRadius = 4;
         [self.contentView addSubview:textField];
         currentyPos += textField.frame.size.height + 8;
     }
