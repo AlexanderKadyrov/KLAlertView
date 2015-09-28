@@ -80,10 +80,12 @@
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
         
+        textField.attributedText = [self attributesForTextString:textField.text];
+        
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
         viewField.backgroundColor = textField.backgroundColor;
         viewField.layer.cornerRadius = 4;
-        textField.frame = CGRectMake(0, 0, viewField.frame.size.width-8, viewField.frame.size.height);
+        textField.frame = CGRectMake(8, 0, viewField.frame.size.width-8, viewField.frame.size.height);
         [viewField addSubview:textField];
         
         [self.contentView addSubview:viewField];
@@ -146,6 +148,26 @@
     [self.contentView setFrame:contentFrame];
 
     [super addSubview:self.contentView];
+}
+
+- (NSMutableAttributedString *)attributesForTextString:(NSString *)string {
+    
+    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    [paragrahStyle setAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor darkGrayColor],
+                                 
+                                 NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14],
+                                 
+                                 NSParagraphStyleAttributeName:paragrahStyle};
+    
+    
+    
+    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
+    
 }
 
 #pragma mark - Action
