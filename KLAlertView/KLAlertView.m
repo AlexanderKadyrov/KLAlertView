@@ -123,7 +123,15 @@
     self.confirmBtn = [[KLButton alloc] initWithFrame:confirmBtnFrame];
     [self.confirmBtn setTitle:self.confirmButtonTitle forState:UIControlStateNormal];
     [self.confirmBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.confirmBtn];
+    
+    //self.confirmBtn.backgroundColor = [UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1];
+    //self.confirmBtn.titleLabel.textColor = [UIColor whiteColor];
+    
+    UIView *viewConfirmBtn = [[UIView alloc] initWithFrame:confirmBtnFrame];
+    viewConfirmBtn.backgroundColor = [UIColor colorWithRed:0.525 green:0.737 blue:0.012 alpha:1];
+    [viewConfirmBtn addSubview:self.confirmBtn];
+    
+    [self.contentView addSubview:viewConfirmBtn];
 
     currentyPos = CGRectGetMaxY(self.confirmBtn.frame);
     
