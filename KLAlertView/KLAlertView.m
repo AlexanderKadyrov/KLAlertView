@@ -83,11 +83,8 @@
         
         UIView *viewField = [[UIView alloc] initWithFrame:frame];
         viewField.backgroundColor = textField.backgroundColor;
-        CGRect newFrame = frame;
-        newFrame.size.width = self.contentView.frame.size.width - (2*HorizontalMargin) - 8;
-        textField.frame = newFrame;
+        textField.frame = CGRectMake(0, 0, viewField.frame.size.width, viewField.frame.size.height);
         [viewField addSubview:textField];
-        
         
         [self.contentView addSubview:viewField];
         currentyPos += textField.frame.size.height + 8;
