@@ -80,7 +80,8 @@
         [textField setBorderStyle:UITextBorderStyleNone];
         [textField setFont:[UIFont systemFontOfSize:16]];
         
-        textField.attributedText = [self attributesForTextString:textField.text];
+        textField.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        textField.textColor = [UIColor darkGrayColor];
         textField.adjustsFontSizeToFitWidth = YES;
         textField.layer.cornerRadius = 4;
         textField.minimumFontSize = 7;
@@ -151,13 +152,6 @@
     [self.contentView setFrame:contentFrame];
 
     [super addSubview:self.contentView];
-}
-
-- (NSMutableAttributedString *)attributesForTextString:(NSString *)string {
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor darkGrayColor],
-                                 NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14]};
-    
-    return [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
 }
 
 #pragma mark - Action
